@@ -1,4 +1,4 @@
-### This is our repository for Conditional Handwriting Generation: Emulating Unique Writing Styles with Transformers
+# This is our repository for Conditional Handwriting Generation: Emulating Unique Writing Styles with Transformers
 
 We were unable to upload our model .pth files because they are too large to push. We are working on finding a way to link them.
 
