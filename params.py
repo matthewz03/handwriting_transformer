@@ -2,7 +2,7 @@ import torch
 
 ###############################################
 
-EXP_NAME = "IAM-339-15-E3D3-LR0.00005-bs8"; RESUME = False
+EXP_NAME = "IAM-339-15-E3D3-LR0.00005-bs8"; RESUME = True
 
 DATASET = 'IAM'
 if DATASET == 'IAM':
@@ -31,7 +31,8 @@ G_LR = 0.00005
 D_LR = 0.00005
 W_LR = 0.00005
 OCR_LR = 0.00005
-EPOCHS = 100000
+# EPOCHS = 100000
+EPOCHS = 4000
 NUM_CRITIC_GOCR_TRAIN = 2
 NUM_CRITIC_DOCR_TRAIN = 1
 NUM_CRITIC_GWL_TRAIN = 2

@@ -117,7 +117,14 @@ class Generator(nn.Module):
         self.decoder = TransformerDecoder(decoder_layer, TN_DEC_LAYERS, decoder_norm,
                                           return_intermediate=True)
 
-        self.Feat_Encoder = nn.Sequential(*([nn.Conv2d(INP_CHANNEL, 64, kernel_size=7, stride=2, padding=3, bias=False)] +list(models.resnet18(pretrained=True).children())[1:-2]))
+        checkpoint = torch.hub.load_state_dict_from_url('https://github.com/aimagelab/font_square/releases/download/ResNet-18/RN18_class_10400.pth')
+        resnet = models.resnet18(num_classes=10400)
+        resnet.load_state_dict(checkpoint)
+        self.Feat_Encoder = nn.Sequential(*(
+            [nn.Conv2d(INP_CHANNEL, 64, kernel_size=7, stride=2, padding=3, bias=False)] +
+            list(resnet.children())[1:-2]
+        ))
+        # self.Feat_Encoder = nn.Sequential(*([nn.Conv2d(INP_CHANNEL, 768, kernel_size=(16, 16), stride=(16, 16))] +list(models.resnet18(pretrained=True).children())[1:-2]))
         
         self.query_embed = nn.Embedding(VOCAB_SIZE, TN_HIDDEN_DIM)
 

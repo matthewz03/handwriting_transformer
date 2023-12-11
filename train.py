@@ -47,6 +47,7 @@ def main():
     os.makedirs('saved_models', exist_ok = True)
     MODEL_PATH = os.path.join('saved_models', EXP_NAME)
     if os.path.isdir(MODEL_PATH) and RESUME: 
+        # model.load_state_dict(torch.load(MODEL_PATH+'/model200.pth'))
         model.load_state_dict(torch.load(MODEL_PATH+'/model.pth'))
         print (MODEL_PATH+' : Model loaded Successfully')
     else: 
@@ -114,6 +115,7 @@ def main():
         print ({'EPOCH':epoch, 'TIME':end_time-start_time, 'LOSSES': losses})
 
         if epoch % SAVE_MODEL == 0: torch.save(model.state_dict(), MODEL_PATH+ '/model.pth')
+        # if epoch % SAVE_MODEL_HISTORY == 0: torch.save(model.state_dict(), MODEL_PATH+ '/model'+str(epoch + 200)+'.pth')
         if epoch % SAVE_MODEL_HISTORY == 0: torch.save(model.state_dict(), MODEL_PATH+ '/model'+str(epoch)+'.pth')
 
 
